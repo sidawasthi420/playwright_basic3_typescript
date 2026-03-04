@@ -51,7 +51,7 @@ pipeline {
         }
 
         failure {
-            echo 'Test execution got failed!'
+            echo 'Test execution failed!'
         }
 
         success {
