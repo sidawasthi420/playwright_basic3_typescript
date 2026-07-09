@@ -1,0 +1,35 @@
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="10.24564500000002">
+<testsuite name="example.spec.ts" timestamp="2026-07-09T16:12:07.180Z" hostname="chromium" tests="1" failures="1" skipped="0" time="8.079" errors="0">
+<testcase name="Playwright homepage › close popup and go to landing page" classname="example.spec.ts" time="8.079">
+<failure message="example.spec.ts:17:5 close popup and go to landing page" type="FAILURE">
+<![CDATA[  [chromium] › example.spec.ts:17:5 › Playwright homepage › close popup and go to landing page ─────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "fail"
+    Received: "success"
+
+       at ..\pages\homePageFunctions.ts:18
+
+      16 |
+      17 |   await getFulfilledResponse(page,'save_cart.php').then((response) => {
+    > 18 |     expect(response.parsed.status).toBe("fail");
+         |                                    ^
+      19 |     // console.log("API response validated successfully:", response);
+      20 |   });
+      21 | };
+        at D:\playwright\playwright_basic3_typescript\pages\homePageFunctions.ts:18:36
+        at validateSaveCartAPIResponse (D:\playwright\playwright_basic3_typescript\pages\homePageFunctions.ts:17:3)
+        at D:\playwright\playwright_basic3_typescript\tests\example.spec.ts:19:3
+
+    Error Context: ..\test-results\example-Playwright-homepag-a639b-opup-and-go-to-landing-page-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results\example-Playwright-homepag-a639b-opup-and-go-to-landing-page-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

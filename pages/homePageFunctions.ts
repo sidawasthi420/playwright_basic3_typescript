@@ -1,10 +1,10 @@
-import { expect, Page } from "@playwright/test";
-import { MainClass } from "../config/shivohamGifts..main";
+import { expect, Locator, Page } from "@playwright/test";
+import { MainClass } from "../config/shivohamGifts.main";
 
 export const validateHomePage = async (page: Page, mainObject: MainClass): Promise<void> => {
 
-  await mainObject.objectHomePage.btnClosePopup.waitFor({ state: "visible" });
-  await mainObject.objectHomePage.btnClosePopup.click();
+  //await mainObject.objectHomePage.btnClosePopup.waitFor({ state: "visible" });
+  //await mainObject.objectHomePage.btnClosePopup.click();
   await page.waitForLoadState("networkidle");
   expect(await mainObject.objectHomePage.logoHomePage.nth(0).isVisible()).toBeTruthy();
 };
@@ -13,15 +13,16 @@ export const validateSaveCartAPIResponse = async (page: Page, mainObject: MainCl
 
   await mainObject.objectHomePage.btnAddToCart.nth(1).waitFor({ state: "visible" });
   await mainObject.objectHomePage.btnAddToCart.nth(1).click();
-  await getFulfilledResponse(page).then((response) => {
+
+  await getFulfilledResponse(page,'save_cart.php').then((response) => {
     expect(response.parsed.status).toBe("success");
     // console.log("API response validated successfully:", response);
   });
 };
 
-export const getFulfilledResponse = async (page: Page): Promise<any> => {
+export const getFulfilledResponse = async (page: Page,api: String): Promise<any> => {
   const response = await page.waitForResponse(r =>
-    r.url().includes('/save_cart.php')
+    r.url().includes(`${api}`)
   );
 
   const text = await response.text();         // always succeeds

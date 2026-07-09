@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { MainClass } from '../config/shivohamGifts..main';
+import { MainClass } from '../config/shivohamGifts.main';
 import { validateHomePage, validateSaveCartAPIResponse } from '../pages/homePageFunctions';
 
 test.describe('Playwright homepage', () => {
