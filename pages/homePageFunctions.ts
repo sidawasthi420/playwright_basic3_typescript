@@ -3,15 +3,16 @@ import { MainClass } from "../config/shivohamGifts.main";
 
 export const validateHomePage = async (page: Page, mainObject: MainClass): Promise<void> => {
 
-  //await mainObject.objectHomePage.btnClosePopup.waitFor({ state: "visible" });
-  //await mainObject.objectHomePage.btnClosePopup.click();
-  await page.waitForLoadState("networkidle");
+  // prefer waiting for a specific element instead of networkidle
+  await mainObject.objectHomePage.logoHomePage.nth(0).waitFor({ state: 'visible', timeout: 60 * 1000 });
   expect(await mainObject.objectHomePage.logoHomePage.nth(0).isVisible()).toBeTruthy();
 };
 
 export const validateSaveCartAPIResponse = async (page: Page, mainObject: MainClass): Promise<void> => {
 
   await mainObject.objectHomePage.btnAddToCart.nth(1).waitFor({ state: "visible" });
+  // wait for any preloader/overlay to disappear before clicking
+  await page.locator('div.preloader-wrapper').waitFor({ state: 'hidden', timeout: 60 * 1000 }).catch(() => {});
   await mainObject.objectHomePage.btnAddToCart.nth(1).click();
 
   await getFulfilledResponse(page,'save_cart.php').then((response) => {
